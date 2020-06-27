@@ -1,36 +1,36 @@
 package inc.sneid.rainbowSix.entity;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.persistence.Lob;
+import javax.validation.constraints.*;
+
+@Data
 public class PersonForm {
+	//TODO Поля: e-mail, направление на зачисление, в какую смену вам удобно ходить, ФИО ребенка, Дата рождения ребенка, ФИО родителя, номер телефона родителя и ребенка, файлы: снилс ребенка и паспорт родителя и ребенка
+	public enum Kvantum{
+		PROMBRO("Промробо"), VR("VR"), HIGH_TECH("Хай-тэк"), BIO("Био"),
+		PROMDESIGN("Промдизайн"), IT("IT");
+
+		private String displayValue;
+		Kvantum(String displayValue){
+			this.displayValue = displayValue;
+		}
+
+		public String getDisplayValue() {
+			return displayValue;
+		}
+	}
+
+	@Pattern(regexp = "^([А-Я][а-я]*)(\\s[А-Я][а-я]*)(\\s[А-Я][а-я]*)?([\\s\\-][А-Я][а-я]*)?$", message = "Не правильно")
+	@NotNull
+	private String fullName;
 
 	@NotNull
-	@Size(min=2, max=30)
-	private String name;
+	@Pattern(regexp = "\\w+@\\w+\\.\\w+", message = "Не верно")
+	private String email;
 
-	@NotNull
-	@Min(18)
-	private Integer age;
+	private Kvantum kvantum;
 
-	public String getName() {
-		return this.name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public Integer getAge() {
-		return age;
-	}
-
-	public void setAge(Integer age) {
-		this.age = age;
-	}
-
-	public String toString() {
-		return "Person(Name: " + this.name + ", Age: " + this.age + ")";
-	}
 }
