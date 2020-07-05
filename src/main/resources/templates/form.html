@@ -1,26 +1,106 @@
-<html>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Form</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
 <body>
-<form method="POST" th:object="${personForm}" th:action="@{/}">
-    <table>
-        <tr>
-            <td>ФИО ребенка:</td>
-            <td><input type="text" th:field="*{fullName}"></td>
-            <td th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}">Full name error</td>
-        </tr>
-        <tr>
-            <td>Email:</td>
-            <td><input type="email" th:field="*{email}" /></td>
-            <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email error</td>
-        </tr>
-        <tr>
-            <td>Квантум:</td>
-            <td><select name="kvantum">
+<div class="mx-auto my-5" style="width: 400px;">
+    <form method="POST" th:object="${personForm}" th:action="@{/}" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="fullName">ФИО ребенка:</label>
+            <input type="text" class="form-control" th:field="*{fullName}" id="fullName" autofocus>
+            <p class="text-danger" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}">Введите правильно</p>
+        </div>
+        <hr>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" th:field="*{email}" id="email"/>
+            <p class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Введите правильно</p>
+        </div>
+        <hr>
+        <div class="form-group">
+            <label for="kvantum">Квантум:</label>
+            <select class="form-control" name="kvantum" id="kvantum">
                 <option th:each="kvant : ${T(inc.sneid.rainbowSix.entity.PersonForm.Kvantum).values()}"
                         th:value="${kvant}" th:text="${kvant.displayValue}"></option>
-            </select></td>
-        </tr>
-        <tr><td></td><td><input type="submit" value="Submit" /></td></tr>
-    </table>
-</form>
+            </select>
+        </div>
+        <hr>
+        <div>
+            <label for="exampleRadios1">Выбите смену</label>
+            <div class="form-check">
+                <input class="form-check-input" th:field="*{shift}" type="radio" name="exampleRadios" id="exampleRadios1" value="1" checked>
+                <label class="form-check-label" for="exampleRadios1">
+                    Первая смена
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" th:field="*{shift}" type="radio" name="exampleRadios" id="exampleRadios2" value="2">
+                <label class="form-check-label" for="exampleRadios2">
+                    Вторая смена
+                </label>
+            </div>
+        </div>
+        <hr>
+        <div class="form-group">
+            <label for="birthday">День рождения ребенка:</label>
+            <input type="text" class="form-control" placeholder="dd.MM.yy" th:field="*{birthday}" id="birthday">
+            <p class="text-danger" th:if="${#fields.hasErrors('birthday')}">Введите день рождения в правильном формате(пример 23.04.08)</p>
+        </div>
+        <hr>
+        <div class="form-group">
+            <label for="phone">Номер телефона ребенка:</label>
+            <input type="text" class="form-control" th:field="*{phone}" id="phone"/>
+            <p class="text-danger" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">Введите правильно</p>
+        </div>
+        <hr>
+        <div class="form-group">
+            <label for="snils">Снилс (pdf, image):</label>
+            <input type="file" class="form-control-file" th:field="*{snils}" id="snils">
+            <p class="text-danger" th:if="${#fields.hasErrors('snils')}" th:errors="*{snils}">Введите правильно</p>
+        </div>
+        <hr>
+        <div class="form-group">
+            <label for="snils">Заявление на зачисление (pdf, image):</label>
+            <input type="file" class="form-control-file" th:field="*{statement}" id="snils">
+            <p class="text-danger" th:if="${#fields.hasErrors('statement')}" th:errors="*{statement}">Введите правильно</p>
+        </div>
+        <hr>
+        <div class="form-group">
+            <label for="snils">Согласие на обработку персональных данных (pdf, image):</label>
+            <input type="file" class="form-control-file" th:field="*{consent}" id="snils">
+            <p class="text-danger" th:if="${#fields.hasErrors('consent')}" th:errors="*{consent}">Введите правильно</p>
+        </div>
+        <hr>
+        <div class="form-group">
+            <label for="snils">Свидетельство о рождении (pdf, image):</label>
+            <input type="file" class="form-control-file" th:field="*{birthCertificate}" id="snils">
+            <p class="text-danger" th:if="${#fields.hasErrors('birthCertificate')}" th:errors="*{birthCertificate}">Введите правильно</p>
+        </div>
+        <hr>
+        <div class="form-group">
+            <label for="snils">Паспорт родителя (pdf, image):</label>
+            <input type="file" class="form-control-file" th:field="*{passportParent}" id="snils">
+            <p class="text-danger" th:if="${#fields.hasErrors('passportParent')}" th:errors="*{passportParent}">Введите правильно</p>
+        </div>
+        <hr>
+        <div class="form-group">
+            <label for="snils">Паспорт ребёнка 14+ (pdf, image):</label>
+            <input type="file" class="form-control-file" th:field="*{passport}" id="snils">
+            <p class="text-danger" th:if="${#fields.hasErrors('passport')}" th:errors="*{passport}">Введите правильно</p>
+        </div>
+        <hr>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Отправить</button>
+        </div>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
 </body>
 </html>

@@ -22,11 +22,11 @@ public class Controller {
             return "form";
         }
         System.out.println(personForm);
-        return "result";
+        return "redirect:/result";
     }
 
     @GetMapping("/result")
-    public String showResult(PersonForm personForm){
+    public String showResult() {
         return "result";
     }
 
