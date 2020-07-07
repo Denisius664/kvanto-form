@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+<body>
+<script>
+function getFile(){
+    document.getElementById("upfile").click();
+}
+
+$(function(){
+  $('#upfile').change(function(){
+    var input = this;
+    var url = $(this).val();
+    var ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
+    if (input.files && input.files[0]&& (ext == "gif" || ext == "png" || ext == "jpeg" || ext == "jpg"))
+     {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+           $('#img').attr('src', e.target.result);
+        }
+       reader.readAsDataURL(input.files[0]);
+    }
+    else
+    {
+      $('#img').attr('src', '/assets/no_preview.png');
+    }
+  });
+});
+</script>
+<form action="#type your action here" method="POST" enctype="multipart/form-data">
+    <div id="yourBtn" style="height: 50px; width: 100px;border: 1px dashed #BBB; cursor:pointer;" onclick="getFile()">Click to upload!</div>
+    <!-- this is your file input tag, so i hide it!-->
+    <div style='height: 0px;width:0px; overflow:hidden;'><input id="upfile" type="file" onchange="readURL(this)" value="upload"/></div>
+    <!-- here you can have file submit button or you can write a simple script to upload the file automatically-->
+    <img src="#" alt="" id="img">
+    <input type="submit" value='submit' >
+</form>
+
+</body>
+</html>

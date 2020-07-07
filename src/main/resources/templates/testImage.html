@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Image</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+<body>
+<form action="/imageTest" method="post" enctype="multipart/form-data">
+    <input type="file" id="upload" name="upload" onchange="readURL(this)" />
+    <input type="hidden" name="imgBase64" id="hidden" value="">
+<!--    <img id="img" th:src="${'/img/' + imgName}" alt=""/>-->
+    <img id="img" th:src="${'data:image/png;base64, ' + imgBase64}" alt=""/>
+    <button>Submit</button>
+</form>
+<!--<img src="/img/image9e2b1e63-bd9f-4481-9cf6-3baf311870083N97YXwGFgk.jpg">-->
+
+<!--<script>-->
+<!--$(function(){-->
+<!--  $('#upload').change(function(){-->
+<!--    var input = this;-->
+<!--    var file = input.files[0];-->
+<!--    var base64Img = 0;-->
+<!--    var reader = new FileReader();-->
+<!--    reader.readAsDataURL(file);-->
+<!--    reader.onload = function () {-->
+<!--     var result = reader.result;-->
+<!--     console.log(result);-->
+<!--     base64Img = result;-->
+<!--     var hiddenField = document.getElementById('hidden');-->
+<!--    hiddenField.setAttribute('value', base64Img);-->
+<!--   };-->
+<!--   reader.onerror = function (error) {-->
+<!--     console.log('Error: ', error);-->
+<!--   };-->
+<!--  });-->
+<!--});-->
+<!--</script>-->
+
+<script>
+$(function(){
+  $('#upload').change(function(){
+    var input = this;
+    var url = $(this).val();
+    var ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
+    if (input.files && input.files[0]&& (ext == "gif" || ext == "png" || ext == "jpeg" || ext == "jpg"))
+     {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+           $('#img').attr('src', e.target.result);
+        }
+       reader.readAsDataURL(input.files[0]);
+    }
+    else
+    {
+      $('#img').attr('src', '/assets/no_preview.png');
+    }
+  });
+});
+</script>
+</body>
+</html>
