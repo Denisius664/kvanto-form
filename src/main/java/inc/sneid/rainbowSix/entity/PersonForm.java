@@ -4,7 +4,6 @@ import inc.sneid.rainbowSix.validation.FileSize;
 import inc.sneid.rainbowSix.validation.FileType;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.Transient;
 import javax.validation.constraints.Max;
@@ -55,40 +54,22 @@ public class PersonForm {
 			message = "Не правильный формат номера телефона")
 	private String phone;
 
-	@Transient
 	@NotNull
-	@FileType(types = {"pdf", "image"})
-	@FileSize(max = 1 * 1024 * 1024, message = "Размер файла должен быть не больше 100КБ")
-	private MultipartFile snils;
+	private String snils = "";
 
-	@Transient
 	@NotNull
-	@FileType(types = {"pdf", "image"})
-	@FileSize(max = 1 * 1024 * 1024, message = "Размер файла должен быть не больше 100КБ")
-	private MultipartFile statement;
+	private String statement = "";
 
-	@Transient
 	@NotNull
-	@FileType(types = {"pdf", "image"})
-	@FileSize(max = 1 * 1024 * 1024, message = "Размер файла должен быть не больше 100КБ")
-	private MultipartFile consent;
+	private String consent = "";
 
-	@Transient
 	@NotNull
-	@FileType(types = {"pdf", "image"})
-	@FileSize(max = 1 * 1024 * 1024, message = "Размер файла должен быть не больше 100КБ")
-	private MultipartFile birthCertificate;
+	private String birthCertificate = "";
 
-	@Transient
 	@NotNull
-	@FileType(types = {"pdf", "image"})
-	@FileSize(max = 1 * 1024 * 1024, message = "Размер файла должен быть не больше 100КБ")
-	private MultipartFile passportParent;
+	private String passportParent = "";
 
-	@Transient
 	@NotNull
-	@FileType(types = {"pdf", "image"})
-	@FileSize(max = 1 * 1024 * 1024, message = "Размер файла должен быть не больше 100КБ")
-	private MultipartFile passport;
+	private String passport = "";
 
 }

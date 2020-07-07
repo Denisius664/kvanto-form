@@ -7,16 +7,16 @@
 </head>
 <body>
 <div class="mx-auto my-5" style="width: 400px;">
-    <form method="POST" th:object="${personForm}" th:action="@{/}" enctype="multipart/form-data">
+    <form method="POST" th:action="@{/}" th:object="${personForm}" enctype="multipart/form-data">
         <div class="form-group">
             <label for="fullName">ФИО ребенка:</label>
-            <input type="text" class="form-control" th:field="*{fullName}" id="fullName" autofocus>
+            <input type="text" class="form-control" th:field="*{fullName}" name="fullName" id="fullName" autofocus>
             <p class="text-danger" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}">Введите правильно</p>
         </div>
         <hr>
         <div class="form-group">
             <label for="email">Email:</label>
-            <input type="email" class="form-control" th:field="*{email}" id="email"/>
+            <input type="email" class="form-control" th:field="*{email}" name="email" id="email"/>
             <p class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Введите правильно</p>
         </div>
         <hr>
@@ -31,13 +31,13 @@
         <div>
             <label for="exampleRadios1">Выбите смену</label>
             <div class="form-check">
-                <input class="form-check-input" th:field="*{shift}" type="radio" name="exampleRadios" id="exampleRadios1" value="1" checked>
+                <input class="form-check-input" th:field="*{shift}" type="radio" name="shift" id="exampleRadios1" value="1" checked>
                 <label class="form-check-label" for="exampleRadios1">
                     Первая смена
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" th:field="*{shift}" type="radio" name="exampleRadios" id="exampleRadios2" value="2">
+                <input class="form-check-input" th:field="*{shift}" type="radio" name="shift" id="exampleRadios2" value="2">
                 <label class="form-check-label" for="exampleRadios2">
                     Вторая смена
                 </label>
@@ -46,50 +46,44 @@
         <hr>
         <div class="form-group">
             <label for="birthday">День рождения ребенка:</label>
-            <input type="text" class="form-control" placeholder="dd.MM.yy" th:field="*{birthday}" id="birthday">
+            <input type="text" class="form-control" placeholder="dd.MM.yy" th:field="*{birthday}" name="birthday" id="birthday">
             <p class="text-danger" th:if="${#fields.hasErrors('birthday')}">Введите день рождения в правильном формате(пример 23.04.08)</p>
         </div>
         <hr>
         <div class="form-group">
             <label for="phone">Номер телефона ребенка:</label>
-            <input type="text" class="form-control" th:field="*{phone}" id="phone"/>
+            <input type="text" class="form-control" th:field="*{phone}" name="phone" id="phone"/>
             <p class="text-danger" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">Введите правильно</p>
         </div>
         <hr>
         <div class="form-group">
             <label for="snils">Снилс (pdf, image):</label>
-            <input type="file" accept="image/*, application/pdf" class="form-control-file" th:field="*{snils}" id="snils">
-            <p class="text-danger" th:if="${#fields.hasErrors('snils')}" th:errors="*{snils}">Введите правильно</p>
+            <input type="file" accept="image/*, application/pdf" name="snilsImg" class="form-control-file"  id="snils">
         </div>
         <hr>
         <div class="form-group">
             <label for="statement">Заявление на зачисление (pdf, image):</label>
-            <input type="file" accept="image/*, application/pdf" class="form-control-file" th:field="*{statement}" id="statement">
-            <p class="text-danger" th:if="${#fields.hasErrors('statement')}" th:errors="*{statement}">Введите правильно</p>
+            <input type="file" accept="image/*, application/pdf" name="statementImg" class="form-control-file"  id="statement">
         </div>
         <hr>
         <div class="form-group">
             <label for="consent">Согласие на обработку персональных данных (pdf, image):</label>
-            <input type="file" accept="image/*, application/pdf" class="form-control-file" th:field="*{consent}" id="consent">
-            <p class="text-danger" th:if="${#fields.hasErrors('consent')}" th:errors="*{consent}">Введите правильно</p>
+            <input type="file" accept="image/*, application/pdf" name="consentImg" class="form-control-file" id="consent">
         </div>
         <hr>
         <div class="form-group">
             <label for="birthCertificate">Свидетельство о рождении (pdf, image):</label>
-            <input type="file" accept="image/*, application/pdf" class="form-control-file" th:field="*{birthCertificate}" id="birthCertificate">
-            <p class="text-danger" th:if="${#fields.hasErrors('birthCertificate')}" th:errors="*{birthCertificate}">Введите правильно</p>
+            <input type="file" accept="image/*, application/pdf" name="birthCertificateImg" class="form-control-file" id="birthCertificate">
         </div>
         <hr>
         <div class="form-group">
             <label for="passportParent">Паспорт родителя (pdf, image):</label>
-            <input type="file" accept="image/*, application/pdf" class="form-control-file" th:field="*{passportParent}" id="passportParent">
-            <p class="text-danger" th:if="${#fields.hasErrors('passportParent')}" th:errors="*{passportParent}">Введите правильно</p>
+            <input type="file" accept="image/*, application/pdf" name="passportParentImg" class="form-control-file"  id="passportParent">
         </div>
         <hr>
         <div class="form-group">
             <label for="passport">Паспорт ребёнка 14+ (pdf, image):</label>
-            <input type="file" accept="image/*, application/pdf" class="form-control-file" th:field="*{passport}" id="passport">
-            <p class="text-danger" th:if="${#fields.hasErrors('passport')}" th:errors="*{passport}">Введите правильно</p>
+            <input type="file" accept="image/*, application/pdf" name="passportImg" class="form-control-file"  id="passport">
         </div>
         <hr>
         <div class="form-group">
